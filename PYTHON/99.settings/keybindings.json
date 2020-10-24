@@ -1,0 +1,9 @@
+// Place your key bindings in this file to override the defaultsauto[]
+// C:\Users\pari0\AppData\Roaming\Code\User\keybindings.json
+// 단축키 설정 File > Preferences > Keyboard Shortcuts
+[
+    {
+        "key": "f4",
+        "command": "python.execInTerminal"
+    }
+]
