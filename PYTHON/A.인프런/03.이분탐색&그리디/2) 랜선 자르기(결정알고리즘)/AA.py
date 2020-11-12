@@ -1,59 +1,47 @@
 
-# 섹션 3. 탐색&시뮬레이션.pdf
+# 섹션 4. 이분탐색 and 그리디.pdf
 
 '''
-# case 1 : 알고리즘 스럽게 짜려면 이와 같이
-for i in range(n):
-    s = input()
-    s = s.upper()  # 대문자와 시킴
-    size = len(s)  # 문자열 길이
+최대 길이는 입력받은 가장 큰수가 기준이 된다.
+n, m 일때 m의 개수보다 크면 일단 tmp = int num save
 
-    # print(s[-1])  # 파이썬에서는 마지막 배열을 -1로 접근 가능함
-    for j in range(size // 2):
-        if s[j] != s[-1 - j]:  # -1이 마지막 배열, -j 하는 이유는 마지막 배열에서 첫번쨰 배열의 길이만큼 추가로 빼주면서 길이 검증
-            print("#%d NO" % (i + 1))
-            break
-    else:
-        print("#%d YES" % (i + 1))
 
 '''
 
 import sys
-path = "D:/03.PERSNAL/00.STUDY/ALGORITHM/PYTHON/A.인프런/02.탐색&시뮬레이션/11) 격자판 회문 수"
+path = "D:/03.PERSNAL/00.STUDY/ALGORITHM/PYTHON/A.인프런/03.이분탐색&그리디/2) 랜선 자르기(결정알고리즘)"
 file = "/input.txt"
-sys.stdin = open(path + file, "r")
+sys.stdin = open(path + file, "rt")
 
-board = [list(map(int, input().split())) for _ in range(7)]  # 7*7 격자판
 
-cnt = 0
+def Count(len):  # mid 값을 받아서
+    cnt = 0
+    for x in Line:  # 4. 전달 받은 line 수 만큼 for 돌면서
+        cnt += (x // len)  # 5. line 을 나눈 몫을 구함
+    return cnt
 
-# case 01
-for i in range(3):  # 0~5, 1~6, 2~7 총 7길이의 숫자 list를 5개 숫자씩 연속된것을 구하려면 3번 돌아야 함
-    for j in range(7):  # 총 길이 7
-        tmp = board[j][i:i + 5]  # [check] 행 고정 열 증가로 값 확인
-        if tmp == tmp[::-1]:  # tmp 값이 tmp 역순 list 값과 같으면 cnt += 1
-            cnt += 1
-        for k in range(2):
-            # [check] 행을 증가 열 고정, board[행+5(구하는길이)-(5/2니까 k는 2번)-1]
-            if board[i + k][j] != board[i + 5 - k - 1][j]:
-                break
-        else:
-            cnt += 1
-print("답1 : ", cnt)
 
-cnt = 0
-# case 02
-for i in range(3):  # 0~5, 1~6, 2~7 총 7길이의 숫자 list를 5개 숫자씩 연속된것을 구하려면 3번 돌아야 함
-    for j in range(7):  # 총 길이 7
-        tmp = board[j][i:i + 5]
-        # 단순하게 5개의 배열 길이로 정해저 있을 경우 배열 0과 끝 -1 and 배열1과 끝-2 길이 비교
-        if tmp[0] == tmp[-1] and tmp[1] == tmp[-2]:
-            cnt += 1
-        for k in range(2):
-            # [check] 행을 증가 열 고정, board[행+5(구하는길이)-(5/2니까 k는 2번)-1]
-            if board[i + k][j] != board[i + 5 - k - 1][j]:
-                break
-        else:
-            cnt += 1
+k, n = map(int, input().split())  # k,n 4개의 길이와 필요한 11개 입력
+Line = []  # 길이 저장할 변수
+res = 0  # 적합한 길이
+largest = 0  # 최대 길이 값
 
-print("답2 : ", cnt)
+# 1. for문 실행 이유는 최대 길이 값을 기준으로 잘라서 갯수를 구해야 하기 때문에 입력받은 값 중 되대 길이를 찾으려고 for
+for i in range(k):
+    tmp = int(input())
+    Line.append(tmp)
+    largest = max(largest, tmp)  # 둘을 비교해서 큰 값을 담아 주는 max() 함수
+
+# 이분검색 조건
+lt = 1
+rt = largest
+
+while lt <= rt:  # 2. 이분검색 자를 수 있는 최대 값 까지 while
+    mid = (lt + rt) // 2  # 중간값으로 이분 탐색 조건 생성
+    if Count(mid) >= n:  # 3. mid 값 함수에 전달해서 n 필요한 11개보다 크거나 같을 경우 res 값을 mid 값으로 저장
+        res = mid
+        lt = mid+1  # 다음 값을 위해 lt 값 증가
+    else:
+        rt = mid - 1  # 6. 그밖에 구하려는 필요 값보다 작을 경우 rt 위치 이동
+
+print(res)

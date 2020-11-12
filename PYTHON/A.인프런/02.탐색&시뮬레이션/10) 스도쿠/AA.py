@@ -27,10 +27,11 @@ def check(a):
         # print('check1 i : ', i)
 
         for j in range(9):
-            print('check1 i : ', i, ' j : ', j)
-            print(a[i][j])
+            # print('check1 i : ', i, ' j : ', j)
+            # print(a[i][j])
             ch1[a[i][j]] = 1
             ch2[a[j][i]] = 1
+            print(ch1[j])
 
         print('check2 ch1 : ', ch1)
         # print('check2 ch2 : ', ch2)
