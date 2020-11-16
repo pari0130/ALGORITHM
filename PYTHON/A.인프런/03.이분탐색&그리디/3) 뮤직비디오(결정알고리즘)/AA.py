@@ -53,7 +53,7 @@ res = 0
 while lt <= rt:
     mid = (lt + rt) // 2  # 이분검색을 위한 중간 값의 몫
     # mid 값이 m장을 만들기 위한 조건을 충족하는가, 3장안에 포함되는가
-    if mid >= maxxx and Count(mid) <= m:
+    if mid >= maxx and Count(mid) <= m:
         res = mid
         rt = mid - 1  # m장안에 속하므로 답이될수 있는 mid값이고, rt는 더 좁혀서 계산해보기 위해 mid -1로
     else:
