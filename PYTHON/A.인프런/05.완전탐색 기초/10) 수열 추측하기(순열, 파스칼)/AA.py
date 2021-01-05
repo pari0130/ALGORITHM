@@ -31,6 +31,7 @@ if __name__ == "__main__":
     b = [1] * n  # list = [1, 1, 1, 1]
     ch = [0] * (n + 1)  # 순열 중복방지용
     for i in range(1, n):
+        # 앞의 숫자 x n-1 // 현재 index
         b[i] = b[i - 1] * (n - i) // i  # 1, 3, 3, 1 (이항 계산을 위해 곱해지는 값일 구하는 방법)
     DFS(0, 0)
     # for x in b:
