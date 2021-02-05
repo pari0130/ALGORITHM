@@ -29,12 +29,15 @@ while True:
     if L == n // 2:
         break
     size = len(Q)
+    print("size : ", size)
     for i in range(size):  # 레벨탐색 구간 for
         tmp = Q.popleft()
-        for j in range(4):
+        for j in range(4):  # 현재 가운데 좌표의 상하좌우 4방향 탐색
+            # 큐에 입력된 ( 2, 2 ) 기준 tmp[0] => 2
+            # 따라서 x = Q 0번위치, dx[-1] 위치 이므로 현재 위치 좌측 좌표를 구 할 수 있음
             x = tmp[0] + dx[j]
             y = tmp[1] + dy[j]
-            if ch[x][y] == 0:
+            if ch[x][y] == 0:  # 좌표가 체크되어 있는지 체크 하는 부분
                 sum += a[x][y]
                 ch[x][y] = 1
                 Q.append((x, y))  # 괄호안에 괄호로 튜플 형태입력
