@@ -3,7 +3,7 @@
 '''
 
 import sys
-path = "D:/03.PERSNAL/00.STUDY/ALGORITHM/PYTHON/A.인프런/06.깊이넓이우선탑색(DFS,BFS) 활용/12) 단지번호 붙히기(DFS,BFS)"
+path = "D:/03.PERSNAL/00.STUDY/ALGORITHM/PYTHON/A.인프런/06.깊이넓이우선탑색(DFS,BFS) 활용/12) 단지번호 붙히기(DFS)"
 file = "/input.txt"
 sys.stdin = open(path + file, "r")
 

@@ -41,6 +41,7 @@ while True:
                 sum += a[x][y]
                 ch[x][y] = 1
                 Q.append((x, y))  # 괄호안에 괄호로 튜플 형태입력
+                print(Q)
 
     # print(L, size)
     # for x in ch:
