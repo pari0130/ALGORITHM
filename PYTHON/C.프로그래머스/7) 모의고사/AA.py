@@ -7,7 +7,7 @@
 
 '''
 import sys
-answers = [1, 2, 3, 4, 5]  # [1,3,2,4,2] [1, 2, 3, 4, 5] [2, 1, 3, 4, 4]
+answers = [4, 2, 3, 4, 5]  # [1,3,2,4,2] [1, 2, 3, 4, 5] [2, 1, 3, 4, 4]
 supo_a = [1, 2, 3, 4, 5]  # len 5
 supo_b = [2, 1, 2, 3, 2, 4, 2, 5]  # len 8
 supo_c = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5]  # len 10
@@ -37,6 +37,8 @@ def solution(answers):
     answer_temp = [cnt_a, cnt_b, cnt_c]
 
     for person, score in enumerate(answer_temp):
+        print(max(answer_temp))
+        # 답안이 최고로 많이 맞춘 사람 1명을 뽑는것이었으므로 max, 모두 같으면 1,2,3
         if score == max(answer_temp):
             answer.append(person + 1)
 
