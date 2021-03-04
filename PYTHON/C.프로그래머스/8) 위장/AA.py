@@ -45,6 +45,7 @@ def solution(clothes):
         else:
             answer[i[1]] = 1  # 포함되어 있지 않은 경우 옷 1개 초기값 입력
 
+    print(answer)
     cnt = 1
 
     for i in answer.values():

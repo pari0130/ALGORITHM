@@ -19,9 +19,6 @@ def equals_cnt(begin, word):  # 3자리 문자를 index 별로 비교하여 1개
 
 
 def DFS(begin, target, words):
-    global answer
-    global ch
-
     if begin == target:
         return
 
@@ -30,24 +27,19 @@ def DFS(begin, target, words):
         if equals_cnt(begin, words[i]) == 2 and ch[i] == 0:
             answer += 1
             ch[i] = 1
-            print("?????????? : ", ch)
+            print(ch)
             print(answer)
             DFS(words[i], target, words)
             ch[i] = 0
 
 
 def solution(begin, target, words):
-    global answer
-    global ch
-
-    answer = 0
     begin = "hit"
     target = "cog"
     words = ["hot", "dot", "dog", "lot", "log", "cog"]
-
     ch = [0] * len(words)  # 순열 중복방지용
     print(ch)
-    DFS(begin, target, words)  # level, start
+    DFS(begin, target, words, ch)  # level, start
     print("answer : ", answer)
 
     return answer
