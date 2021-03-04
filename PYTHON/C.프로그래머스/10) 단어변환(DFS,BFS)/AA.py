@@ -3,40 +3,51 @@
 
 '''
 
-from difflib import SequenceMatcher
-begin = "hit"
-target = "cog"
-words = ["hot", "dot", "dog", "lot", "log", "cog"]
+ch = {}
+answer = 0
 
 
-str1 = 'hit'
-str2 = 'ith'
+def equals_cnt(begin, word):
+    cnt = 0
+    for i in begin:
+        idx = 0
+        for j in word:
+            if idx > 0:
+                break
+            if i == j:
+                idx += 1
+                cnt += 1
 
-ratio = SequenceMatcher(None, str1, str2).ratio()
-print(ratio)
-print(1 if round(SequenceMatcher(None, str1, str2).ratio(), 1) > 0.6 else 0)
-
-
-# def DFS(begin, target):  # level, start
-#     global answer
-#     if begin == target:
-#         return
-
-#     for i in range(len(words)):
-#         if words[i] in ch:
-
-#             answer += 1
+    return cnt
 
 
-# def solution(begin, target, words):
-#     # global words
-#     answer = 0
-#     ch = {}
-#     # ch[words[0]] = 1
-#     # print(ch)
-#     DFS(begin, target)  # level, start
-#     print(answer)
-#     return answer
+def DFS(begin, target, words):  # level, start
+    global answer
+    global ch
+
+    if begin == target:
+        return
+
+    for i in range(len(words)):
+        print(equals_cnt(begin, words[i]))
+        if equals_cnt(begin, words[i]) == 2:
+            if words[i] in ch:
+                continue
+            else:
+                answer += 1
+                ch[words[i]]
+                print(ch)
+                DFS(words[i], target, words)
+                ch = {}
 
 
-# print(solution(begin, target, words))
+def solution(begin, target, words):
+    begin = "hit"
+    target = "cog"
+    words = ["hot", "dot", "dog", "lot", "log", "cog"]
+    DFS(begin, target, words)  # level, start
+    print("answer : ", answer)
+    return answer
+
+
+solution("", "", "")
