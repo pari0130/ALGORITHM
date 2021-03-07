@@ -1,56 +1,86 @@
 '''
 프로그래머스 단어변환(DFS,BFS)
+begin	target	words	                                    return
+"hit",	"cog",	["hot", "dot", "dog", "lot", "log", "cog"]	4
+"hit",	"cog",	["hot", "dot", "dog", "lot", "log"]	        0
+
+print(solution("hit", "cog", ["hot", "dot", "dog", "lot", "log", "cog"]), 4)
+print(solution("hit", "cog", ["hot", "dot", "dog", "lot", "log"]), 0)
+print(solution("hit", "hot", ["hot", "dot", "dog", "lot", "log"]), 1)
+print(solution("1234567000", "1234567899", [
+      "1234567800", "1234567890", "1234567899"]), 3)
+print(solution("hit", "cog", ["cog", "log", "lot", "dog", "hot"]), 4)
+
 
 '''
 
 
+def compare(begin, word):
+    words = zip(begin, word)
+    diff = len([c1 for c1, c2 in words if c1 != c2])
+    return diff
+
+
 def equals_cnt(begin, word):  # 3자리 문자를 index 별로 비교하여 1개만 틀릴경우 체크(2개가맞는경우)
     cnt = 0
-    for i in begin:
-        idx = 0
-        for j in word:
-            if idx > 0:
-                break
-            if i == j:
-                idx += 1
-                cnt += 1
+    for i in range(len(begin)):
+        if begin[i] == word[i]:
+            cnt += 1
 
     return cnt
 
 
 def DFS(begin, target, words):
     global answer
+    global tmp_answer
     global ch
+    global res
 
-    if begin == target:
+    if tmp_answer > answer:
         return
 
-    for i in range(len(words)):
-        print(equals_cnt(begin, words[i]))
-        if equals_cnt(begin, words[i]) == 2 and ch[i] == 0:
-            answer += 1
-            ch[i] = 1
-            print("?????????? : ", ch)
-            print(answer)
-            DFS(words[i], target, words)
-            ch[i] = 0
+    if begin == target:
+        if answer > tmp_answer:
+            answer = tmp_answer
+        return
+    else:
+        for i in range(len(words)):
+            # eqcnt = equals_cnt(begin, words[i])
+            eqcnt = compare(begin, words[i])
+            if eqcnt == 1 and ch[words[i]] == 0:
+                tmp_answer += 1  # 방문한 카운트 증가
+                ch[words[i]] = 1  # 방문한 위치 체크
+
+                DFS(words[i], target, words)  # 방문
+
+                tmp_answer -= 1  # 방문한 위치 카운트 감소
+                ch[words[i]] = 0  # 방문한 위치 초기화
 
 
 def solution(begin, target, words):
     global answer
+    global tmp_answer
     global ch
+    global res
 
-    answer = 0
-    begin = "hit"
-    target = "cog"
-    words = ["hot", "dot", "dog", "lot", "log", "cog"]
+    res = []
+    answer = 2147000000
+    tmp_answer = 0
+    ch = {}
 
-    ch = [0] * len(words)  # 순열 중복방지용
-    print(ch)
+    # 방문위치 체크 변수
+    for i in words:
+        ch[i] = 0
+
     DFS(begin, target, words)  # level, start
-    print("answer : ", answer)
+
+    if answer == 2147000000:
+        answer = 0
 
     return answer
 
 
-solution("", "", "")
+print(solution("hit", "cog", ["cog", "log", "lot", "dog", "hot"]))  # 4
+
+print(solution("1234567000", "1234567899", [
+      "1234567800", "1234567890", "1234567899"]))  # 3
