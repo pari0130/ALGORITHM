@@ -6,10 +6,27 @@
 ※ 트럭이 다리에 완전히 오르지 않은 경우, 이 트럭의 무게는 고려하지 않습니다.
 '''
 
+'''
+방밥만 생각해서 맞는지 정답 비교
+'''
+
 
 def solution(bridge_length, weight, truck_weights):
-    answer = 0
-    return answer
+    time = 0
+    bridge = [0] * bridge_length  # 건너는 다리 길이를 초기화
+
+    # 트럭이 존재할때만 추가되므로 트럭이 없으면 다리길이는 0 이 된다.
+    while len(bridge) != 0:
+        time += 1
+        bridge.pop(0)  # 1초가 지나날때 마다 pop 하여 현재 추가된 트럭 이동
+        if truck_weights:
+            # 현재 다리위의 하중 + 추가되는 트럭 <= 다리하중
+            if sum(bridge) + truck_weights[0] <= weight:
+                bridge.append(truck_weights.pop(0))
+            else:
+                bridge.append(0)
+
+    return time
 
 
 # bridge_length(다리길이), weight(다리 하중), truck_weights(트럭 하중)
