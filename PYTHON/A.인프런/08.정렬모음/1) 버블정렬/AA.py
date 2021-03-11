@@ -32,4 +32,4 @@ def bubble_sort3(arr):  # 내림차순
 
 
 print(bubble_sort1([2, 1, 3, 2]))
-print(bubble_sort2([2, 1, 3, 2]))
+print(bubble_sort3([2, 1, 3, 2]))
