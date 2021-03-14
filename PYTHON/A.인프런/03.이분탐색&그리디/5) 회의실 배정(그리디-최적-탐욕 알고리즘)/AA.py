@@ -11,7 +11,7 @@
 '''
 
 import sys
-path = "D:/03.PERSNAL/00.STUDY/ALGORITHM/PYTHON/A.인프런/03.이분탐색&그리디/5) 회의실 배정(그리디)"
+path = "D:/03.PERSNAL/00.STUDY/ALGORITHM/PYTHON/A.인프런/03.이분탐색&그리디/5) 회의실 배정(그리디-최적-탐욕 알고리즘)"
 file = "/input.txt"
 sys.stdin = open(path + file, "rt")
 
