@@ -11,12 +11,12 @@ def solution(number, k):
     tmp = []
     tmp_num = [i for i in number]
 
-    # print(tmp_num)
+    print(tmp_num)
     # print(len(tmp_num)) # 4
     lt = 0
     rt = k-1
     while lt < k:
-        tmp.append(tmp_num[lt] + tmp_num[rt])
+        tmp.append(tmp_num[:lt] + tmp_num[rt])
 
         if rt == len(tmp_num)-1:
             lt += 1
