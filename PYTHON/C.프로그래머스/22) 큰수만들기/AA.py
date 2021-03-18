@@ -1,48 +1,28 @@
 
-'''
-2*3 배열일때 지나가는 점선의 개수는
-2+3 - 최대공약수 만큼의 크기가 계산된다.
-
-'''
-
 
 def solution(number, k):
-    answer = ''
-    tmp = []
-    tmp_num = [i for i in number]
+    # 1. 스택 생성
+    st = []
 
-    print(tmp_num)
-    # print(len(tmp_num)) # 4
-    lt = 0
-    rt = k-1
-    while lt < k:
-        tmp.append(tmp_num[:lt] + tmp_num[rt])
+    # 2. 큰 수가 앞자리가 되게끔 스택에 저장합니다.
+    for elem in number:
+        # append 하기 전에 임시 list[-1] 크기보다 큰 수가 있을 경우 list[-1] 값을 pop 하여 제외
+        while st and st[-1] < elem and k > 0:
+            st.pop()
+            k -= 1
 
-        if rt == len(tmp_num)-1:
-            lt += 1
-            rt = lt + 1
-        else:
-            rt += 1
+        # 현재 elem 을 append
+        st.append(elem)
 
-    # tmp.append(int(tmp_num[i] + tmp_num[j]))
-    # tmp=set(tmp)
+    # 3. k가 남았다면 뒤에서부터 뺍니다.
+    while k > 0:
+        st.pop()
+        k -= 1
 
-    print(tmp)
-    # answer = str(max(tmp))
+    answer = "".join(st)
     return answer
 
 
 print("답 : ", solution("1924", 2))  # 94
-print("답 : ", solution("1231234", 3))  # 3234
-print("답 : ", solution("4177252841", 4))  # 775841
-
-1231
-1232
-1233
-1234
-2312
-2313
-2314
-...
-3123
-3234
+# print("답 : ", solution("1231234", 3))  # 3234
+# print("답 : ", solution("4177252841", 4))  # 775841
