@@ -40,8 +40,8 @@ def solution(orders, course):
 print("답 : ", solution(["ABCFG", "AC", "CDE", "ACDE", "BCFG", "ACDEH"],
                        [2, 3, 4]))  # ["AC", "ACDE", "BCFG", "CDE"]
 
-# print("답 : ", solution(["ABCDE", "AB", "CD", "ADE", "XYZ", "XYZ", "ACD"],
-#                        [2, 3, 5]))  # ["ACD", "AD", "ADE", "CD", "XYZ"]
+print("답 : ", solution(["ABCDE", "AB", "CD", "ADE", "XYZ", "XYZ", "ACD"],
+                       [2, 3, 5]))  # ["ACD", "AD", "ADE", "CD", "XYZ"]
 
-# print("답 : ", solution(["XYZ", "XWY", "WXA"],
-#                        [2, 3, 4]))  # ["WX", "XY"]
+print("답 : ", solution(["XYZ", "XWY", "WXA"],
+                       [2, 3, 4]))  # ["WX", "XY"]
