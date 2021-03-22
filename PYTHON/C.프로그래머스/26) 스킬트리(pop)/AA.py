@@ -11,6 +11,7 @@ def solution(skill, skill_trees):
         print(tmp_skill)
 
         # for-else 문의 경우 break 가 발생하지 않았을 경우 for 문 이후 else 를 타게 된다.
+        # 쉽게 break - else 문
         for j in i:
             if j in skill:
                 if j != tmp_skill.pop(0):
