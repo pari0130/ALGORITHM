@@ -33,3 +33,5 @@ for x in tmp:
 # 아스키 번호로 문자 찾기
 tmp = 90
 print(chr(tmp))
+
+print(ord("h"))

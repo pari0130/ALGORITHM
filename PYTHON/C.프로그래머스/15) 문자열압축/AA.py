@@ -31,6 +31,7 @@ def solution(s):
         # 3. count = 1로 초기화하고, 임시저장 str을 처음부터 자를 길이까지 잘라 저장한다.
         count = 1
         tempStr = s[:cut]
+        print(tempStr)
 
         # 4. for i in range(cut,len(s), cut) => range의 3번째 항에 cut을 넣으면 자를 단위 만큼 건너뛰며 for문을 돈다.
         for i in range(cut, len(s), cut):
