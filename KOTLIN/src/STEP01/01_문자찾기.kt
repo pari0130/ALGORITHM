@@ -14,7 +14,7 @@ fun main() {
     // val age = sc.nextInt()
 }
 
-fun solution(str: String, t: Char): Int {
+private fun solution(str: String, t: Char): Int {
     var answer = 0
 
     str.toUpperCase().forEach {
