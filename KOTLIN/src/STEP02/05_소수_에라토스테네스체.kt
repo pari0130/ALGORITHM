@@ -19,12 +19,15 @@ private fun solution(n: Int): Int {
     for (i in 2..n) {
         if (ch[i] == 0) {
             answer++
-            var j = i
-            while (j <= n) {
-                j += i
-                if (j > n) break
-                else ch[j] = 1
+            for(j in i..n step i){
+                ch[j] = 1
             }
+//            var j = i
+//            while (j <= n) {
+//                j += i
+//                if (j > n) break
+//                else ch[j] = 1
+//            }
         }
     }
 
