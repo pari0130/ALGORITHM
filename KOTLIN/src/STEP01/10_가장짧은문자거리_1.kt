@@ -37,7 +37,7 @@ private fun solution(s: String, t: Char): IntArray {
             p = 0
         } else {
             p++
-            // Math.min(1, 2) 작은 숫자 비교
+            //#팁 Math.min(1, 2) 작은 숫자 비교
             answer[i] = answer[i].coerceAtMost(p)
         }
     }

@@ -17,7 +17,7 @@ out
 */
 private fun solution(n: Int, m: Int, a: IntArray, b: IntArray): ArrayList<Int> {
     val answer = ArrayList<Int>()
-    Arrays.sort(a) // #정렬
+    Arrays.sort(a) // #팁 정렬
     Arrays.sort(b)
     var p1 = 0
     var p2 = 0

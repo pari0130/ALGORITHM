@@ -27,7 +27,7 @@ private fun solution(n: Int, arr: Array<IntArray>): Int {
             sum1 += arr[i][j]
             sum2 += arr[j][i]
         }
-        // answer 과 sum 중 큰 값을 찾기 위한 식
+        //#팀 큰수 비교 Math.max(a,b) answer 과 sum 중 큰 값을 찾기 위한 식
         answer = answer.coerceAtLeast(sum1)
         answer = answer.coerceAtLeast(sum2)
     }
