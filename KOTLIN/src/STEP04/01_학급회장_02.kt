@@ -17,11 +17,8 @@ C
 
 private fun solution(n: Int, s: String): String {
     var answer = ""
-    val strList = ArrayList<String>()
-    s.forEach {
-        strList.add(it.toString())
-    }
-    val maxTarget = strList.groupingBy { it.first() }.eachCount().maxBy { it.value }?.component1() // component1 = 첫번째 값
+    val strList = s.toList()
+    val maxTarget = strList.groupingBy { it }.eachCount().maxBy { it.value }?.component1() // component1 = 첫번째 값
     // println(strList) // [B, A, C, B, A, C, C, A, C, C, B, D, E, D, E]
     // println(maxTarget) // C
 
