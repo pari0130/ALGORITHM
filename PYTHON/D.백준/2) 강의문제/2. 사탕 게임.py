@@ -1,55 +1,52 @@
 '''
 https://www.acmicpc.net/problem/3085
+3
+CCP
+CCP
+PPC
+
 '''
-from itertools import *
+import numpy as np
 
 n = int(input())  # 행
 candy = [list(''.join(input())) for _ in range(n)]  # 배열
 m = len(candy[0])  # 열
-max = 0
-
-def count():
-    return 0
+largest = 0
 
 
-def search(i, j):
-    print(candy[i][j])
-    global n, m, max
-
-    answer = 0
-
-    for _ in range(4):
-        for x, y in [[-1, 0], [1, 0], [0, -1], [0, 1]]:
-            '''
-            4방향 swap 후 swap 라인의 캔디 카운트
-            카운트 대상은 스왑한 문자열 대상
-            '''
-            if count() > max:
-                answer = max
+def count(list):
+    dict = {"C": 0, "P": 0, "Z": 0, "Y": 0}
+    for i in range(len(list)):
+        dict[list[i]] += 1
+    return max([v for v in dict.values()])
 
 
 for i in range(n):
     for j in range(m):
-        search(i, j)
+        for x, y in [[-1, 0], [1, 0], [0, -1], [0, 1]]:
+            xx = i + x
+            yy = y + y
+            cnt = 0
 
-print(max)
+            if 0 <= xx < m and 0 <= yy < n:
+                tmp = candy[i][j]
+                candy[i][j] = candy[xx][yy]
+                candy_tmp = np.array(candy)
 
-#
-# for i in range(n):
-#     for j in range(m):
-#         '''
-#         현재위치 상하좌우 스왑, 스왑 후 인접 행, 열 count() > max check
-#         '''
-#         for x, y in [[-1, 0], [1, 0], [0, -1], [0, 1]]:
-#             dy =
-#             print()
-#
-#         s = swap()
-#         if count() > max:
-#             answer = max
-#
-#         print()
+                a = count(candy_tmp[i, :])  # 현재 행
+                b = count(candy_tmp[xx, :])  # 이전/다음 행
+                c = count(candy_tmp[:, j])  # 형재 열
+                d = count(candy_tmp[:, yy])  # 이전/다음 열
 
-print(candy)
+                if a > largest:
+                    largest = a
+                if b > largest:
+                    largest = b
+                if c > largest:
+                    largest = c
+                if d > largest:
+                    largest = d
 
-# 시간초과 함.....
+                candy[i][j] = tmp
+
+print(largest)
